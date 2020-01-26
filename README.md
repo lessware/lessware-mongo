@@ -26,7 +26,11 @@ module.exports = framework([
       .db('test')
       .collection('todo')
       .findOne({id: context.event.payload.id})
-      return result
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result)
+    }
   }
 ])
 ```
