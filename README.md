@@ -10,7 +10,7 @@ An API Controller using `connect` middlware.
 
 ```javascript
 const { framework } = require('lessware')
-const mongo = require('lessware-mongo')
+const midmongo = require('lessware-mongo')
 
 module.exports = framework([
   // attach mongo url from an async process
