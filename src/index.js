@@ -21,7 +21,7 @@ exports.connect = ({uri, options=() => defaultOptions}={}) => async context => {
     context.mongo = {}
   }
 
-  if (!context.mongo.client || !context.mongo.client.serverConfig.isConnected()) {
+  if (!context.mongo.client || !context.mongo.client.isConnected()) {
     context.mongo.client = await dbConnect(uri(context), options(context))
   }
 
