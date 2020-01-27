@@ -32,7 +32,7 @@ describe('mongo', function() {
     const mongo = {} // cache client
     const config = {
       mongo: {
-        options: {
+        connectOptions: {
           useNewUrlParser: true,
           useUnifiedTopology: true
         }
@@ -61,14 +61,14 @@ describe('mongo', function() {
         async context => ({...context, mongoUrl: testConfig.mongoUrl}),
         midmongo.connect({
           uri: context => context.mongoUrl,
-          options: context => context.config.mongo.options,
+          options: context => context.config.mongo.connectOptions,
         }),
         async context => {
           const result = await context.mongo.client
             .db('test')
             .collection('todo')
             .findOne({id: context.event.payload.id})
-            return result
+          return result
         }
       ])
 
