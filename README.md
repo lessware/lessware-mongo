@@ -48,6 +48,9 @@ module.exports = framework([
 const findTodo = require('./findTodo')
 const router = {findTodo}
 
+// persist connections setup by middleware
+const mongo = {}
+
 exports.handler = async (event, ctx) => {
   return controller = router[event.fieldName]
 
