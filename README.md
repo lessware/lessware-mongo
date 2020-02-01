@@ -1,5 +1,5 @@
 # lessware-mongo
-mongo middlware for the lessware framework
+mongo middleware for the lessware framework
 
 ## Install
 `npm i -S lessware-mongo`
@@ -12,7 +12,7 @@ mongo middlware for the lessware framework
 - output: the middleware function for lessware's `framework` usage.
 
 ## Example Usage
-An API Controller using `connect` middlware.
+An API Controller using `connect` middleware.
 
 ```javascript
 // -- findTodo.js --
