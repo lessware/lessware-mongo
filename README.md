@@ -4,6 +4,12 @@ mongo middlware for the lessware framework
 ## Install
 `npm i -S lessware-mongo`
 
+## API
+`connect` a function that returns the middleware function.
+- input parameter: a configuration object, whose keys are functions that must synchronously return configuration properties
+  - `uri`: must be a function whose input is the `context` passed to the middleware, and the output is the mongodb connection string, e.g. `mongodb://localhost:27017`
+  - `options`: must be a function whose input is the `context` object passed to the middleware, and the output is the options object passed to `MongoClient.connect(uri, options)`
+- output: the middleware function for lessware's `framework` usage.
 
 ## Example Usage
 An API Controller using `connect` middlware.
