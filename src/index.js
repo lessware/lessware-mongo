@@ -16,13 +16,25 @@ const dbConnect = async (url, options) => {
   })
 }
 
-exports.connect = ({uri, options=() => defaultOptions}={}) => async context => {
+const defaultStoreWrite = (context, client) => {
   if (!context.mongo) {
     context.mongo = {}
   }
+  context.mongo.client = client
+}
 
-  if (!context.mongo.client || !context.mongo.client.isConnected()) {
-    context.mongo.client = await dbConnect(uri(context), options(context))
+const defaultStoreRead = (context) => (context.mongo && context.mongo.client)
+
+exports.connect = ({
+  uri,
+  options=() => defaultOptions,
+  store={write: defaultStoreWrite, read: defaultStoreRead},
+}) => async context => {
+
+  let client = store.read(context)
+  if (!client || !client.isConnected()) {
+    const newClient = await dbConnect(uri(context), options(context))
+    store.write(context, newClient)
   }
 
   return context
