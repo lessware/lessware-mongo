@@ -55,7 +55,7 @@ exports.handler = async (event, ctx) => {
   return controller = router[event.fieldName]
 
   // pass the context object to the framework
-  return controller({event, ctx})
+  return controller({event, ctx, mongo})
 }
 ```
 
